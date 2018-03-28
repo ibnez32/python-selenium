@@ -12,6 +12,9 @@ class LoginPage():
     def __init__(self, driver):
         self.driver = driver
         self.driver.get("http://the-internet.herokuapp.com/login")
+        # checks to see if login is there, if not fails and doesnt run test
+        assert self.driver.find_element(
+            self._login_form["by"], self._login_form["value"]).is_displayed()
 
     def with_(self, username, password):
         self.driver.find_element(self._username_input["by"],
@@ -24,3 +27,7 @@ class LoginPage():
     def success_message_present(self):
         return self.driver.find_element(self._success_message["by"],
                                         self._success_message["value"]).is_displayed()
+
+    def failure_message_present(self):
+        return self.driver.find_element(self._failure_message["by"],
+                                        self._failure_message["value"]).is_displayed()
