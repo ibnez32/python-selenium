@@ -1,3 +1,7 @@
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
 class BasePage():
     # constructor, gets access to selenium driver object so other methods can use it
     def __init__(self, driver):
@@ -16,4 +20,19 @@ class BasePage():
         self._find(locator).send_keys(input_text)
 
     def _is_displayed(self, locator):
-        return self._find(locator).is_displayed()
+        try:
+            self._find(locator).is_displayed()
+        except NoSuchElementException:
+            return False
+        return True
+
+    # takes a locator & timeout
+    def _wait_for_is_displayed(self, locator, timeout):
+        try:
+            wait = WebDriverWait(self.driver, timeout)
+            wait.until(
+                expected_conditions.visibility_of_element_located(
+                    (locator['by'], locator['value'])))
+        except TimeoutException:
+            return False
+        return True
