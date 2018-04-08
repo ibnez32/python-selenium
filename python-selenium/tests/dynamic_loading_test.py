@@ -9,18 +9,8 @@ class TestDynamicLoading():
     @pytest.fixture()
     # self is a required parameter for class methods
     # request is a parameter made available to fixtures. It enables access to loads of things during a test run
-    def dynamic_loading(self, request):
-        #_geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
-        #driver_ = webdriver.Firefox(executable_path=_geckodriver)
-        driver_ = webdriver.Firefox(executable_path='/Users/ibnezabed/Desktop/selenium-guidebook-python-practice/python-selenium/vendor/geckodriver')
-
-        # part of method driver
-        def quit():
-            driver_.quit()
-        # part of method driver. The function ends when the indentation becomes smaller
-        # Actions passed to addfinalizer get executed after a test method completes
-        request.addfinalizer(quit)
-        return dynamic_loading_page.DynamicLoadingPage(driver_)
+    def dynamic_loading(self, driver):
+        return dynamic_loading_page.DynamicLoadingPage(driver)
 
     def test_hidden_element(self, dynamic_loading):
         dynamic_loading.load_example("1")

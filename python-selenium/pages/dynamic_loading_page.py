@@ -9,7 +9,7 @@ class DynamicLoadingPage(BasePage):
         self.driver = driver
 
     def load_example(self, example_number):
-        self._visit("http://the-internet.herokuapp.com/dynamic_loading/" + example_number)
+        self._visit("/dynamic_loading/" + example_number)
         self._click(self._start_button)
 
     # timeout specifies how long we'd like selenium to wait for an element to be displayed before giving up

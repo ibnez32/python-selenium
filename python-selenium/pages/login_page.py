@@ -13,7 +13,7 @@ class LoginPage(BasePage):
     # constructor, gets access to selenium driver object so other methods can use it
     def __init__(self, driver):
         self.driver = driver
-        self._visit("http://the-internet.herokuapp.com/login")
+        self._visit("/login")
         # checks to see if login is there, if not fails and doesnt run test
         assert self._is_displayed(self._login_form)
 
