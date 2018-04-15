@@ -10,3 +10,6 @@
   - selenium
 - Assuming virtual environment is set up, activate the environment by ```source my_project/bin/activate```
 - Run the tests using ```py.test```
+- Run a specific browser ```py.test --browser=chrome```
+- For parallel execution ```py.test -n 2``` - the number being the number of processes we want to use
+- For running markets ```py.test -m smoke```
