@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from pages import dynamic_loading_page
 
+@pytest.mark.regression
 class TestDynamicLoading():
     # Decorators are a form of metadata. Adds additional functionality in your tests. Used for test setup/teardown
     # In pytest we do this with a fixture (function gets called before test and also after)

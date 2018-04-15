@@ -12,10 +12,12 @@ class TestLogin():
 
     # Our test method starts with the word (that's how pytest knows it's a test)
     # driver method is passed in(remember it returns driver_ a browser instance)
+    @pytest.mark.smoke
     def test_valid_credentials(self, login):
         login.with_("tomsmith", "SuperSecretPassword!")
         assert login.success_message_present()
 
+    @pytest.mark.regression
     def test_invalid_credentials(self, login):
         login.with_("sefdsf", "gsddsvs")
         assert login.failure_message_present()
