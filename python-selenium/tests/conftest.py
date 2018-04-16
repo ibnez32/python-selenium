@@ -26,13 +26,14 @@ def pytest_addoption(parser):
 def driver(request):
         config.baseurl = request.config.getoption("--baseurl")
         config.browser = request.config.getoption("--browser")
-        # _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
-        # driver_ = webdriver.Firefox(executable_path=_geckodriver)
+
+        _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
+        _chromedriver = os.path.join(os.getcwd(), 'vendor', 'chromedriver')
+
         if config.browser == "firefox":
-            driver_ = webdriver.Firefox(executable_path='/Users/ibnezabed/Desktop/selenium-guidebook-python-practice/python-selenium/vendor/geckodriver')
+            driver_ = webdriver.Firefox(executable_path=_geckodriver)
         elif config.browser == "chrome":
-            #chromedriver = os.getcwd() + "/vendor/chromedriver"
-            driver_ = webdriver.Chrome(executable_path='/Users/ibnezabed/Desktop/selenium-guidebook-python-practice/python-selenium/vendor/chromedriver')
+            driver_ = webdriver.Chrome(executable_path=_chromedriver)
 
         # part of method driver
         def quit():
